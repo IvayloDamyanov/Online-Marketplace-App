@@ -1,0 +1,11 @@
+{
+  "name": "Online-Marketplace-App",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/SimeonGerginov/Online-Marketplace-App.git",
+  "author": "SimeonGerginov",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
