@@ -77,4 +77,4 @@ class BaseMongoDbData {
     }
  }
 
-module.exports = { BaseMongoDbData };
+module.exports = BaseMongoDbData;

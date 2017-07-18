@@ -30,4 +30,4 @@ class UserData extends BaseData {
     }
 }
 
-module.exports = { UserData };
+module.exports = UserData;

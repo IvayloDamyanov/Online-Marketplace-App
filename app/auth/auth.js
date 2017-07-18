@@ -7,7 +7,7 @@ const MongoStore = require('connect-mongo')(session);
 
 const config = require('../../config');
 
-const ApplyTo = (app, data) => {
+const applyTo = (app, data) => {
     passport.use(new Strategy((username, password, done) => {
         data.users.checkPassword(username, password)
            .then(() => {
@@ -51,4 +51,4 @@ const ApplyTo = (app, data) => {
     });
 };
 
-module.exports = { ApplyTo };
+module.exports = { applyTo };

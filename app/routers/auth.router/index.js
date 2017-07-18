@@ -1,2 +1,2 @@
 /* eslint linebreak-style: ["error", "windows"]*/
-module.export = require('./router');
+module.exports = require('./router');
