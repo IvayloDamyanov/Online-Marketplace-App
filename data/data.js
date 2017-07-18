@@ -1,7 +1,11 @@
 /* eslint linebreak-style: ["error", "windows"]*/
 
+const UsersData = require('./users.data');
+
 const init = (db) => {
-    return Promise.resolve();
+    return Promise.resolve({
+        users: new UsersData(db),
+    });
 };
 
 module.exports = { init };
