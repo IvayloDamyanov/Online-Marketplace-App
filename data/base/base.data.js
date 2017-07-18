@@ -53,7 +53,7 @@ class BaseMongoDbData {
                         .then(() => {
                             return model;
                         });
-                }                
+                }
                 return model;
             });
     }
