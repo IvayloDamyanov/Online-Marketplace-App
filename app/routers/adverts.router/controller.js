@@ -1,5 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"]*/
-
 class AdvertsController {
     constructor(data) {
         this.data = data;

@@ -1,5 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"]*/
-
 const express = require('express');
 
 const init = (data) => {
@@ -9,6 +7,10 @@ const init = (data) => {
     require('./auth').applyTo(app, data);
 
     app.use(require('connect-flash')());
+    app.use((req, res, next) => {
+        res.locals.messages = require('express-messages')(req, res);
+        next();
+});
 
     require('./routers').attachTo(app, data);
 

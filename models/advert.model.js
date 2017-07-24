@@ -1,5 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"]*/
-
 class Advert {
     static isValid(model) {
         return typeof model !== 'undefined'

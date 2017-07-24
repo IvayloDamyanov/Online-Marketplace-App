@@ -1,11 +1,15 @@
-/* eslint linebreak-style: ["error", "windows"]*/
-
-const Category = require('../models/category.model');
 const BaseData = require('./base/base.data');
+
+const validator = {
+    // Validate
+    isValid() {
+        return true;
+    },
+};
 
 class CategoryData extends BaseData {
     constructor(db) {
-        super(db, Category, Category);
+        super(db, { name: 'Category' }, validator);
     }
 }
 

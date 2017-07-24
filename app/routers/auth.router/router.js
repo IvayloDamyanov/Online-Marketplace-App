@@ -1,5 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"]*/
-
 const { Router } = require('express');
 const passport = require('passport');
 

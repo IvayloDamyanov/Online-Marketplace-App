@@ -1,5 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"]*/
-
 class UsersController {
     constructor(data) {
         this.data = data;

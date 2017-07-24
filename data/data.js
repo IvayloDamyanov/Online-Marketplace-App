@@ -1,5 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"]*/
-
 const UsersData = require('./users.data');
 const AdvertsData = require('./advert.data');
 

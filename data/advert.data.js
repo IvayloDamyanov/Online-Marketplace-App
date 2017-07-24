@@ -1,5 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"]*/
-
 const Advert = require('../models/advert.model');
 const BaseData = require('./base/base.data');
 

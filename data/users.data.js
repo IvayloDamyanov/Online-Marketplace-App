@@ -1,5 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"]*/
-
 const User = require('../models/user.model');
 const BaseData = require('./base/base.data');
 

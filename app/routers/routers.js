@@ -1,4 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"]*/
 /* globals __dirname */
 
 const fs = require('fs');

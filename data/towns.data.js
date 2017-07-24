@@ -1,11 +1,15 @@
-/* eslint linebreak-style: ["error", "windows"]*/
-
-const Town = require('../models/town.model');
 const BaseData = require('./base/base.data');
+
+const validator = {
+    // Validate
+    isValid() {
+        return true;
+    },
+};
 
 class TownData extends BaseData {
     constructor(db) {
-        super(db, Town, Town);
+        super(db, { name: 'Town' }, validator);
     }
 }
 
