@@ -17,9 +17,10 @@ class AdvertsController {
 
     requestAd(req, res) {
         const model = req.body; // informaciqta ot poletata
-        const item = this.data.adverts.getAll();
-        console.log('item :' + item);
-        res.render('adverts/ads', { model: item });
+        const items = this.data.adverts.filterBy(model);
+        items.then((item) => {
+            res.render('adverts/ads', { model: item });
+        });
     }
 
     createAd(req, res) {
