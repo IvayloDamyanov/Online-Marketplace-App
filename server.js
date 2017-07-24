@@ -12,6 +12,6 @@ async()
     .then((data) => require('./app').init(data))
     .then((app) => {
         app.listen(config.port, () => {
-            console.log('The server is working well');
+            console.log('The server is working at port: ' + config.port);
         });
     });

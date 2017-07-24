@@ -1,0 +1,30 @@
+extends ../_shared/_master
+block body
+    h1
+        | Create
+        form(action = "/adverts/ads/" method = "post")
+            p
+                | Num: 
+                input(type="text" name="num" value="")
+                | Name: 
+                input(type="text" name="name" value="")
+                | Town: 
+                input(type="text" name="town" value="")
+                | Category: 
+                input(type="text" name="category" value="")
+                | Description: 
+                input(type="text" name="description" value="")
+            input(type="submit", value="Submit")
+        | Search
+        form(action = "/adverts/ads/" method = "get")
+            p
+                | Num: 
+                input(type="text" name="num" value="")
+                | Name: 
+                input(type="text" name="name" value="")
+                | Town: 
+                input(type="text" name="town" value="")
+                | Category: 
+                input(type="text" name="category" value="")
+            input(type="submit", value="Submit")
+            

@@ -20,9 +20,11 @@ class BaseMongoDbData {
             .toArray()
             .then((models) => {
                 if (this.ModelClass.toViewModel) {
-                    return models.map(
+                    const output = models.map(
                         (model) => this.ModelClass.toViewModel(model)
                     );
+                    console.log('Output v bazoviq metod: ' + output[0].name); // za Test
+                    return output;
                 }
                 return models;
             });
