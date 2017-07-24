@@ -1,9 +1,9 @@
 extends ../_shared/_master
 block body
-    h1
+    h3
         | Create
         form(action = "/adverts/ads/" method = "post")
-            p
+            h4
                 | Num: 
                 input(type="text" name="num" value="")
                 | Name: 
@@ -17,7 +17,7 @@ block body
             input(type="submit", value="Submit")
         | Search
         form(action = "/adverts/ads/" method = "get")
-            p
+            h4
                 | Num: 
                 input(type="text" name="num" value="")
                 | Name: 
