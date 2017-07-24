@@ -14,7 +14,7 @@ class AdvertsController {
     }
 
     requestAd(req, res) {
-        const model = req.body; // informaciqta ot poletata
+        const model = req.query; // informaciqta ot poletata
         const items = this.data.adverts.filterBy(model);
         items.then((item) => {
             res.render('adverts/ads', { model: item });
