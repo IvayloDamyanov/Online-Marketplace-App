@@ -2,15 +2,11 @@ extends ../_shared/_master
 block body
     h1
         | Ads
+    each ad in model
         ul
-            li
-                | Num: #{model[0].num}
-            li
-                | Name: #{model[0].name}
-            li
-                | Town: #{model[0].town}
-            li
-                | Category: #{model[0].category}
-            li
-                | Description: #{model[0].description}
+            li= 'Num: ' + ad.num
+            li= 'Name: ' + ad.name
+            li= 'Town: ' + ad.town
+            li= 'Category: ' + ad.category
+            li= 'Description: ' + ad.description
         
