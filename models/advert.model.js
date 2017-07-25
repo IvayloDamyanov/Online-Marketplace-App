@@ -2,7 +2,7 @@ class Advert {
     static isValid(model) {
         return typeof model !== 'undefined'
         && typeof model.name === 'string'
-        && model.name.length > 4;
+        && model.name.length > 2;
     }
 
     get id() {

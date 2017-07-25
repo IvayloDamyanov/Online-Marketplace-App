@@ -9,10 +9,13 @@ const attachTo = function(app, data) {
             return controller.getHome(req, res);
         })
         .get('/ads', function(req, res) {
-            return controller.requestAd(req, res);
+            return controller.getAds(req, res);
         })
         .post('/ads', function(req, res) {
             return controller.createAd(req, res);
+        })
+        .get('/ads/:num', function(req, res) {
+            return controller.getAd(req, res);
         })
         ;
 
