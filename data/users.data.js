@@ -1,6 +1,6 @@
 const User = require('../models/user.model');
 const BaseData = require('./base/base.data');
-const encrypted = require('../../../utils/encryption');
+const encrypted = require('../utils/encryption');
 const encrypt = encrypted.encrypt;
 
 class UserData extends BaseData {
@@ -21,9 +21,8 @@ class UserData extends BaseData {
                    throw new Error('Invalid user !');
                }
 
-               const salt = encrypt.generateSalt();
                const hashPass = encrypt.
-                generateHashedPassword(salt, password);
+                generateHashedPassword(user.salt, password);
 
                if (user.password !== hashPass) {
                    throw new Error('Invalid password !');

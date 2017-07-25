@@ -29,7 +29,7 @@ class UsersController {
                 }
 
                 bodyUser.salt = encrypt.generateSalt();
-                bodyUser.hashPass = encrypt.
+                bodyUser.password = encrypt.
                 generateHashedPassword(bodyUser.salt, bodyUser.password);
                 return this.data.users.create(bodyUser);
             })
