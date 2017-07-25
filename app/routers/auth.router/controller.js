@@ -1,3 +1,6 @@
+const encrypted = require('../../../utils/encryption');
+const encrypt = encrypted.encrypt;
+
 class UsersController {
     constructor(data) {
         this.data = data;
@@ -25,6 +28,9 @@ class UsersController {
                     throw new Error('User already exists !');
                 }
 
+                bodyUser.salt = encrypt.generateSalt();
+                bodyUser.hashPass = encrypt.
+                generateHashedPassword(bodyUser.salt, bodyUser.password);
                 return this.data.users.create(bodyUser);
             })
             .then((dbUser) => {

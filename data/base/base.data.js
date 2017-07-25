@@ -31,8 +31,8 @@ class BaseMongoDbData {
     }
 
     filterBy(props) {
-        const query = this.queryBuilder(props);
-        return this.collection.find(query).toArray();
+        // const query = this.queryBuilder(props);
+        return this.collection.find(props).toArray();
     }
 
     getAll() {
