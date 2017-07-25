@@ -8,12 +8,14 @@ class AdvertsController {
     }
 
     getAd(req, res) {
-        return res.render('adverts/ads', {
-            // model: item,
+        const num = req.params.num.slice(5, req.params.num.length);
+        const items = this.data.adverts.findFirst(num);
+        items.then((item) => {
+            res.render('adverts/ad', { model: item });
         });
     }
 
-    requestAd(req, res) {
+    getAds(req, res) {
         const model = req.query; // informaciqta ot poletata
         const items = this.data.adverts.filterBy(model);
         items.then((item) => {
@@ -23,17 +25,16 @@ class AdvertsController {
 
     createAd(req, res) {
         const model = req.body;
-        this.data.adverts.create(model);
+        const num = model.num;
+        const items = this.data.adverts.findFirst(num);
 
-        const item = {
-            num: 1,
-            name: 'Ime',
-            town: 'Grad',
-            category: 'Kategoria',
-            description: 'Opisanie',
-        }; // da go napravq da prenasochva obqvata
-        return res.render('adverts/ads', {
-            model: item,
+        items.then((item) => {
+            if (item) {
+                this.data.adverts.updateById(item, model);
+            } else {
+                this.data.adverts.create(model);
+            }
+            return res.render('adverts/home');
         });
     }
 }

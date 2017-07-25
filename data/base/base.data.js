@@ -26,6 +26,10 @@ class BaseMongoDbData {
         return query;
     }
 
+    findFirst(props) {
+        return this.collection.findOne({ num: props });
+    }
+
     filterBy(props) {
         const query = this.queryBuilder(props);
         return this.collection.find(query).toArray();
@@ -74,9 +78,9 @@ class BaseMongoDbData {
             });
     }
 
-    updateById(model) {
+    updateById(target, model) {
         return this.collection.updateOne({
-            _id: model._id,
+            _id: target._id,
         }, model);
     }
 

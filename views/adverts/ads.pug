@@ -4,9 +4,10 @@ block body
         | Ads
     each ad in model
         ul
-            li= 'Num: ' + ad.num
+            li  
+                | Num: 
+                a(href=':num=' + ad.num) #{ad.num}
             li= 'Name: ' + ad.name
             li= 'Town: ' + ad.town
             li= 'Category: ' + ad.category
-            li= 'Description: ' + ad.description
         
