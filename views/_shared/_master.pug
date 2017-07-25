@@ -16,9 +16,8 @@ body
                     if user
                         a.nav-link.h4(href='#')
                             =user.username
-                            form(action="/auth/sign-out" method="post")
-                                button.nav-btn
-                                   | sign-out
+                        a.h5(href="/auth/sign-out")
+                                | Sign-out
                     else
                         a.nav-link.h4(href='#')
                             | User
