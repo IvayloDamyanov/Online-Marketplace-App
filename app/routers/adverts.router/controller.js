@@ -17,7 +17,7 @@ class AdvertsController {
 
     getAds(req, res) {
         const model = req.query; // informaciqta ot poletata
-        const items = this.data.adverts.filterBy(model);
+        const items = this.data.adverts.filterDataBy(model);
         items.then((item) => {
             res.render('adverts/ads', { model: item });
         });
