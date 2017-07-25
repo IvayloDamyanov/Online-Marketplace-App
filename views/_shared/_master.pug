@@ -7,29 +7,24 @@ head
     block head
 body
     .container
-       nav.navbar.navbar-default
-         div.container-fluid
-           div.navbar-header
-             a.navbar-brand(href="/") Marketplace System
-         ul.nav.navbar-nav
-            if user
-                li
-                    a(href="#")
-                        =user.username
-                    ul
-                        li
-                            form(action="/auth/sign-out" method="post")
-                                button
-                                     | sign-out
-            else
-                li
-                    a(href="#")
-                        | User
-                    ul
-                        li
-                            a(href="/auth/sign-up")
+        nav.navbar.navbar-default
+            div.container-fluid
+                div.navbar-header
+                    a.navbar-brand(href="/") Marketplace System
+            ul.nav.nav-pills
+                li.nav-item
+                    if user
+                        a.nav-link.h4(href='#')
+                            =user.username
+                            a.h5(action="/auth/sign-out" method="post")
+                                | sign-out
+                    else
+                        a.nav-link.h4(href='#')
+                            | User
+                            a.h5(href="/auth/sign-up")
                                 | Sign Up
-                        li
-                            a(href="/auth/sign-in")
+                            a.h5(href="/auth/sign-in")
                                 | Sign In
+                li.nav-item
+                    a.nav-link.h4(href='adverts') Adverts
     block body

@@ -9,6 +9,7 @@ const attachTo = function(app, data) {
             return controller.getHome(req, res);
         })
         .get('/ads', function(req, res) {
+            console.log('yay');
             return controller.getAds(req, res);
         })
         .post('/ads', function(req, res) {

@@ -1,13 +1,13 @@
 extends ../_shared/_master
 block body
-    h1
-        | Ads
-    each ad in model
-        ul
-            li  
-                | Num: 
-                a(href=':num=' + ad.num) #{ad.num}
-            li= 'Name: ' + ad.name
-            li= 'Town: ' + ad.town
-            li= 'Category: ' + ad.category
-        
+    .container
+        h1
+            | Ads
+        each ad in model
+            ul
+                li  
+                    | Num: 
+                    a(href=':num=' + ad.num) #{ad.num}
+                li= 'Name: ' + ad.name
+                li= 'Town: ' + ad.town
+                li= 'Category: ' + ad.category
