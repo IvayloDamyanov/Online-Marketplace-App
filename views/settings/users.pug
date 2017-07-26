@@ -1,0 +1,9 @@
+extends ../_shared/_master
+block body
+    .container
+        h1
+            | Users
+        if user
+            ul
+                li= 'Username ' + user.username 
+                li= 'Password ' + user.password

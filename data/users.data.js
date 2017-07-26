@@ -31,6 +31,27 @@ class UserData extends BaseData {
                return true;
            });
     }
+
+    updatePassword(target) {
+        return this.findByUsername(target.username)
+              .then((user) => {
+                  if (!user) {
+                      throw new Error('Invalid user !');
+                  }
+
+                  const hashPass = encrypt.
+                  generateHashedPassword(user.salt, target.password);
+
+                   return this.collection.updateOne({
+                          username: user.username,
+                    }, { $set: { 'password': hashPass } },
+                    { upsert: true });
+              });
+    }
+
+    getAllUsers() {
+        return this.collection.getAll();
+    }
 }
 
 module.exports = UserData;

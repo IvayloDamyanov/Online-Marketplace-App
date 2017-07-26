@@ -8,7 +8,7 @@ class BaseMongoDbData {
         this.collectionName = this._getCollectionName();
         this.collection = this.db.collection(this.collectionName);
     }
-    
+
     filterBy(props) {
         return this.collection.find(props).toArray();
     }
