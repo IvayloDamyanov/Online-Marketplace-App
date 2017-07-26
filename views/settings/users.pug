@@ -3,7 +3,7 @@ block body
     .container
         h1
             | Users
-        if user
+        each user in model
             ul
                 li= 'Username ' + user.username
                 li= 'Nickname ' + user.nickname 

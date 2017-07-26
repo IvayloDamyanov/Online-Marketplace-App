@@ -66,7 +66,7 @@ class UserData extends BaseData {
     }
 
     getAllUsers() {
-        return this.collection.getAll();
+        return this.getAll();
     }
 }
 

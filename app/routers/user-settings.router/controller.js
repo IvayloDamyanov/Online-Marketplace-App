@@ -22,7 +22,10 @@ class UserSettingsController {
     }
 
     getUsers(req, res) {
-        return res.render('settings/users');
+        this.data.users.getAllUsers()
+          .then((user) => {
+              return res.render('settings/users', { model: user });
+          });
     }
 
     getUpdateProfile(req, res) {
