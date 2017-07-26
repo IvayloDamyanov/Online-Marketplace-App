@@ -9,5 +9,9 @@ block body
             ul.nav.nav-pills
                 li.nav-item
                     if user
-                        a.navbar-brand(href="settings/updateProfile")
+                        a.btn.btn-green(href="settings/updateProfile")
                                 | updateProfile
+                        a.btn.btn-red(href=`/settings/users/${user._id}`)
+                                | Delete Profile 
+    block scripts
+      script(src="/static/js/users.js")

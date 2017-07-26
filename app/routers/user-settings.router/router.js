@@ -16,6 +16,9 @@ const attachTo = (app, data) => {
        })
        .post('/users/:id', (req, res) => {
            return controller.updateUser(req, res);
+       })
+       .delete('/users/:id', (req, res) => {
+           return controller.deleteCurrentUser(req, res);
        });
 
     app.use('/settings', router);

@@ -31,6 +31,18 @@ class UserSettingsController {
     getUpdateProfile(req, res) {
         return res.render('settings/updateProfile');
     }
+
+    deleteCurrentUser(req, res) {
+        const bodyUser = req.body;
+        this.data.users.deleteUser(bodyUser)
+          .then(() => {
+              return res.redirect('/');
+          })
+          .catch((err) => {
+              req.flash('error', err);
+              return res.send(err);
+          });
+    }
 }
 
 const init = (data) => {

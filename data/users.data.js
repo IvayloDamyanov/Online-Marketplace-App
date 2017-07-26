@@ -65,6 +65,10 @@ class UserData extends BaseData {
             });
     }
 
+    deleteUser(target) {
+        this.collection.remove({ username: target.username });
+    }
+
     getAllUsers() {
         return this.getAll();
     }

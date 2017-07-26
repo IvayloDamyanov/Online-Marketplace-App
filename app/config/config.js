@@ -14,6 +14,9 @@ const applyTo = (app) => {
     const libsPath = path.join(__dirname, '../../node_modules/');
     app.use('/libs', express.static(libsPath));
 
+    const staticsPath = path.join(__dirname, '../../static');
+    app.use('/static', express.static(staticsPath));
+
     app.use(cookieParser('keyboard cat'));
 };
 
