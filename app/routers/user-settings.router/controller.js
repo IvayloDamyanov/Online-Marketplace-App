@@ -6,8 +6,9 @@ class UserSettingsController {
     updateUser(req, res) {
         const bodyUser = req.body;
 
-        this.data.users.updatePassword(bodyUser)
-        .then((user) => {
+        Promise.all([this.data.users.updatePassword(bodyUser),
+        this.data.users.updateProfile(bodyUser)])
+        .then(() => {
             return res.redirect('/');
         })
         .catch((err) => {
@@ -22,6 +23,10 @@ class UserSettingsController {
 
     getUsers(req, res) {
         return res.render('settings/users');
+    }
+
+    getUpdateProfile(req, res) {
+        return res.render('settings/updateProfile');
     }
 }
 

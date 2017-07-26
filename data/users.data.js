@@ -49,6 +49,22 @@ class UserData extends BaseData {
               });
     }
 
+    updateProfile(target) {
+        this.findByUsername(target.username)
+            .then((user) => {
+                return this.collection.update(
+                    { username: user.username },
+                    { username: user.username,
+                      password: user.password,
+                      salt: user.salt,
+                      nickname: target.nickname,
+                      age: target.age,
+                      gender: target.gender,
+                      interests: target.interests },
+                      { upsert: true });
+            });
+    }
+
     getAllUsers() {
         return this.collection.getAll();
     }

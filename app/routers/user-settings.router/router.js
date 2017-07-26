@@ -11,6 +11,9 @@ const attachTo = (app, data) => {
        .get('/users', (req, res) => {
            return controller.getUsers(req, res);
        })
+       .get('/updateProfile', (req, res) => {
+           return controller.getUpdateProfile(req, res);
+       })
        .post('/users/:id', (req, res) => {
            return controller.updateUser(req, res);
        });
