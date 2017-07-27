@@ -11,12 +11,27 @@ class AdvertsController {
         });
     }
 
+    getCreate(req, res) {
+        return res.render('adverts/create');
+    }
+
+    getSearch(req, res) {
+        return res.render('adverts/search');
+    }
+
     getAds(req, res) {
         const model = req.query; // informaciqta ot poletata
         const items = this.data.adverts.filterDataBy(model);
         items.then((item) => {
             res.render('adverts/ads', { model: item });
         });
+    }
+
+    getCurrentAds(req, res) {
+        this.data.adverts.getAllAds()
+          .then((ad) => {
+              return res.render('adverts/all', { model: ad });
+          });
     }
 
     createAd(req, res) {
@@ -30,7 +45,7 @@ class AdvertsController {
             } else {
                 this.data.adverts.create(model);
             }
-            return res.render('adverts/home');
+            return res.redirect('/');
         });
     }
 }

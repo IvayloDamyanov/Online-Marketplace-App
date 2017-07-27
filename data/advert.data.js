@@ -31,6 +31,10 @@ class AdvertData extends BaseData {
         const query = this.queryBuilder(props);
         return this.collection.find(query).toArray();
     }
+
+    getAllAds() {
+        return this.getAll();
+    }
 }
 
 module.exports = AdvertData;

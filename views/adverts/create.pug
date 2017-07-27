@@ -1,19 +1,6 @@
 extends ../_shared/_master
 block body
     .container
-        h3
-            form(action = "/adverts/ads/" method = "get")
-                | Search
-                h4
-                    | Num: 
-                    input(type="text" name="num" value="")
-                    | Name: 
-                    input(type="text" name="name" value="")
-                    | Town: 
-                    input(type="text" name="town" value="")
-                    | Category: 
-                    input(type="text" name="category" value="")
-                input(type="submit", value="Submit")
         if user
             h3
                 form(action = "/adverts/ads/" method = "post")
