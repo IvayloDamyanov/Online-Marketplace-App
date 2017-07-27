@@ -1,31 +1,15 @@
+include _nav
+
 <!DOCTYPE html>
 html(lang="en")
 head
     meta(charset="UTF-8")
-    title Document
+    title Online Marketplace
     link(rel="stylesheet", href="/libs/bootstrap/dist/css/bootstrap.min.css")
+    script(src='/libs/jquery/dist/jquery.js')
+    link(rel="stylesheet", href="/static/css/main.css")
     block head
 body
+    +nav()
     .container
-        nav.navbar.navbar-default
-            div.container-fluid
-                div.navbar-header
-                    a.navbar-brand(href="/") Marketplace System
-            ul.nav.nav-pills
-                li.nav-item
-                    if user
-                        a.nav-link.h4(href='#')
-                            =user.username
-                        a.h5(href="/auth/sign-out")
-                                | Sign-out
-                        a.nav-link.h1(href='settings') Settings
-                    else
-                        a.nav-link.h4(href='#')
-                            | User
-                            a.h5(href="/auth/sign-up")
-                                | Sign Up
-                            a.h5(href="/auth/sign-in")
-                                | Sign In
-                li.nav-item
-                    a.nav-link.h4(href='adverts') Adverts
-    block body
+        block body

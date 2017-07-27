@@ -17,10 +17,6 @@ class UserSettingsController {
         });
     }
 
-    getHome(req, res) {
-        return res.render('settings/home');
-    }
-
     getUsers(req, res) {
         this.data.users.getAllUsers()
           .then((user) => {
