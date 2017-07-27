@@ -3,10 +3,6 @@ class AdvertsController {
         this.data = data;
     }
 
-    getHome(req, res) {
-        return res.render('adverts/home');
-    }
-
     getAd(req, res) {
         const num = req.params.num.slice(5, req.params.num.length);
         const items = this.data.adverts.findFirst(num);

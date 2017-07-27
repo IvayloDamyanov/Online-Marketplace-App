@@ -6,9 +6,6 @@ const attachTo = function(app, data) {
     const controller = require('./controller').init(data);
 
     router
-        .get('/', function(req, res) {
-            return controller.getHome(req, res);
-        })
         .get('/ads', function(req, res) {
             return controller.getAds(req, res);
         })
