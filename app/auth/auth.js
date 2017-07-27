@@ -49,4 +49,12 @@ const applyTo = (app, data) => {
     });
 };
 
-module.exports = { applyTo };
+const isAuthenticated = (req, res, next) => {
+        if (!req.isAuthenticated()) {
+            res.redirect('/auth/sign-in');
+        } else {
+            next();
+        }
+    };
+
+module.exports = { applyTo, isAuthenticated };

@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const auth = require('../../auth/auth');
 
 const attachTo = function(app, data) {
     const router = new Router();
@@ -11,7 +12,7 @@ const attachTo = function(app, data) {
         .get('/ads', function(req, res) {
             return controller.getAds(req, res);
         })
-        .post('/ads', function(req, res) {
+        .post('/ads', auth.isAuthenticated, function(req, res) {
             return controller.createAd(req, res);
         })
         .get('/ads/:num', function(req, res) {
