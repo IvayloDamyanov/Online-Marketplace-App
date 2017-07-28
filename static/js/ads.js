@@ -1,12 +1,12 @@
-$('#delete-ad').on('click', function (e) {
+var el = document.querySelector('#delete-ad');
+el.addEventListener('click', function (e) {
       const num = $('#delete-ad').data('adnum');
-      console.log('EVENT...');
       $.ajax({
-            url: 'adverts/ads/' + num,
+            url: '/adverts/ads/',
             type: 'DELETE',
             data: {num: num},
       })
       .then((response) => {
-            location = response.redirect;
+            location = response.redirect('search');
       });
 });

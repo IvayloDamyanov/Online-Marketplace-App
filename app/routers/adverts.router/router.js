@@ -24,7 +24,7 @@ const attachTo = function(app, data) {
         .get('/:num', function(req, res) {
             return controller.getAd(req, res);
         })
-        .delete('/ads/:num', function(req, res) {
+        .delete('/ads', function(req, res) {
             return controller.deleteAd(req, res);
         });
 
