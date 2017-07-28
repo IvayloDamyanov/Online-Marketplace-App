@@ -2238,6 +2238,12 @@ passport-strategy@1.x.x:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/passport-strategy/-/passport-strategy-1.0.0.tgz#b5539aa8fc225a3d1ad179476ddf236b440f52e4"
 
+passport.socketio@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/passport.socketio/-/passport.socketio-3.7.0.tgz#2ee5fafe9695d4281c8cddd3fe975ecd18e6726e"
+  dependencies:
+    xtend "^4.0.0"
+
 passport@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/passport/-/passport-0.3.2.tgz#9dd009f915e8fe095b0124a01b8f82da07510102"
@@ -3193,7 +3199,7 @@ xtend@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-1.0.3.tgz#3f5d937353cced8e085399a563fdb22541c2960a"
 
-"xtend@>=4.0.0 <4.1.0-0", xtend@~4.0.1:
+"xtend@>=4.0.0 <4.1.0-0", xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
 

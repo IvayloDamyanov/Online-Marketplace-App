@@ -10,7 +10,7 @@ const init = (data) => {
     app.use((req, res, next) => {
         res.locals.messages = require('express-messages')(req, res);
         next();
-});
+    });
 
     require('./routers').attachTo(app, data);
 
