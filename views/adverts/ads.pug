@@ -1,4 +1,7 @@
 extends ../_shared/_master
+block head
+     script(src="/static/js/ads.js")
+
 block body
     .container
         h1
@@ -11,3 +14,5 @@ block body
                 li= 'Name: ' + ad.name
                 li= 'Town: ' + ad.town
                 li= 'Category: ' + ad.category
+                a.btn.btn-default#delete-ad(href="#" data-adnum=ad.num)
+                     | Delete Ad

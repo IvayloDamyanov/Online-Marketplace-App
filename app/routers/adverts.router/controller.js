@@ -36,6 +36,7 @@ class AdvertsController {
 
     createAd(req, res) {
         const model = req.body;
+        model.isDeleted = model.isDeleted || false;
         const num = model.num;
         const items = this.data.adverts.findFirst(num);
 
@@ -47,6 +48,21 @@ class AdvertsController {
             }
             return res.redirect('/');
         });
+    }
+
+    deleteAd(req, res) {
+        const num = req.params.num;
+
+        this.data.adverts.deleteAd(num)
+            .then(() => {
+               res.status(200).json({
+                    redirect: 'adverts/all',
+               });
+            })
+            .catch((err) => {
+                req.flash('error', err);
+                return res.send(err);
+            });
     }
 }
 

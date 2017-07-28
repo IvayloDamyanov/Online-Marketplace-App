@@ -23,6 +23,30 @@ class AdvertData extends BaseData {
         return query;
     }
 
+    updateIsDeletedProperty(ad) {
+        return this.collection.update(
+            { num: ad.num },
+            { num: ad.num,
+              name: ad.name,
+              town: ad.town,
+              category: ad.category,
+              isDeleted: true },
+            { upsert: true });
+    }
+
+    findByNum(num) {
+        return this.collection.findOne({
+            num: num,
+        });
+    }
+
+    deleteAd(num) {
+      return this.findByNum(num)
+                 .then((ad) => {
+                     return this.updateIsDeletedProperty(ad);
+                 });
+    }
+
     findFirst(props) {
         return this.collection.findOne({ num: props });
     }

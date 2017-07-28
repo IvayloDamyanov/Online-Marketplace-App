@@ -20,13 +20,13 @@ mixin nav()
                    ul.dropdown-list.list
                       li.list-item
                          a.nav-btn#nav-btn-item-all(href="/settings/users")
-                            | User
+                            | Users
                       li.list-item
                          a.nav-btn#nav-btn-item-add(href="settings/updateProfile")
                             | Update
                             | Profile
                       li.list-item
-                                a.nav-btn#delete-user(href="#" data-username=user.username data-userid=user._id)
+                                a.nav-btn#delete-user(href="#" data-userid=user._id)
                                    | Delete 
                                    = user.username
             else
