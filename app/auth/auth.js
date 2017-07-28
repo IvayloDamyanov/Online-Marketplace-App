@@ -8,6 +8,10 @@ const applyTo = (app, data) => {
                return data.users.findByUsername(username);
            })
            .then((user) => {
+               if (user.isDeleted) {
+                  done(null, false,
+                    { message: 'Deleted user ' + user.username });
+               }
                done(null, user);
            })
            .catch((err) => {
