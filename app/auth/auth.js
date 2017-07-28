@@ -1,9 +1,5 @@
-const session = require('express-session');
 const passport = require('passport');
 const { Strategy } = require('passport-local');
-const MongoStore = require('connect-mongo')(session);
-
-const config = require('../../config');
 
 const applyTo = (app, data) => {
     passport.use(new Strategy((username, password, done) => {
@@ -17,13 +13,6 @@ const applyTo = (app, data) => {
            .catch((err) => {
                done(err);
            });
-    }));
-
-    app.use(session({
-        store: new MongoStore({ url: config.connectionString }),
-        secret: config.sessionSecret,
-        resave: true,
-        saveUninitialized: true,
     }));
 
     app.use(passport.initialize());

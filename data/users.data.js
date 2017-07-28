@@ -65,8 +65,25 @@ class UserData extends BaseData {
             });
     }
 
-    deleteUser(target) {
-        this.collection.remove({ username: target.username });
+    updateIsDeletedProperty(user) {
+        return this.collection.update(
+            { username: user.username },
+            { username: user.username,
+              password: user.password,
+              salt: user.salt,
+              nickname: user.nickname,
+              age: user.age,
+              gender: user.gender,
+              interests: user.interests,
+              isDeleted: true },
+            { upsert: true });
+    }
+
+    deleteUser(id) {
+      return this.findById(id)
+                 .then((user) => {
+                     return this.updateIsDeletedProperty(user);
+                 });
     }
 
     getAllUsers() {

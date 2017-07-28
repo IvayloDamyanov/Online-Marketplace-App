@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const auth = require('../../auth/auth');
 
 const attachTo = (app, data) => {
     const router = new Router();
@@ -14,7 +15,7 @@ const attachTo = (app, data) => {
        .post('/users/:id', (req, res) => {
            return controller.updateUser(req, res);
        })
-       .delete('/users/:id', (req, res) => {
+       .delete('/users/:id', auth.isAuthenticated, (req, res) => {
            return controller.deleteCurrentUser(req, res);
        });
 

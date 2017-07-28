@@ -28,6 +28,8 @@ class UsersController {
                     throw new Error('User already exists !');
                 }
 
+                bodyUser.isDeleted = bodyUser.isDeleted || false;
+
                 bodyUser.salt = encrypt.generateSalt();
                 bodyUser.password = encrypt.
                 generateHashedPassword(bodyUser.salt, bodyUser.password);

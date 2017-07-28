@@ -23,7 +23,7 @@ gulp.task('start:server', () => {
 
 const { MongoClient } = require('mongodb');
 
-gulp.task('server:stop', () => {
+gulp.task('stop:server', () => {
     return MongoClient.connect(config.connectionString)
         .then((db) => {
             return db.dropDatabase();
