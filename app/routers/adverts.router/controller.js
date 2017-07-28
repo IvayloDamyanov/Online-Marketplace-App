@@ -4,6 +4,7 @@ class AdvertsController {
     }
 
     getAd(req, res) {
+        console.log('GET AD');
         const num = req.params.num.slice(5, req.params.num.length);
         const items = this.data.adverts.findFirst(num);
         items.then((item) => {
@@ -20,6 +21,7 @@ class AdvertsController {
     }
 
     getAds(req, res) {
+        console.log('GET ADSSSSSS');
         const model = req.query; // informaciqta ot poletata
         const items = this.data.adverts.filterDataBy(model);
         items.then((item) => {
@@ -51,13 +53,12 @@ class AdvertsController {
     }
 
     deleteAd(req, res) {
-        const num = req.params.num;
-
+        const num = req.body.num;
         this.data.adverts.deleteAd(num)
             .then(() => {
-               res.status(200).json({
-                    redirect: 'adverts/all',
-               });
+                res.status(200).json({
+                    // redirect: 'adverts/all',
+                });
             })
             .catch((err) => {
                 req.flash('error', err);

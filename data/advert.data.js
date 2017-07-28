@@ -6,21 +6,22 @@ class AdvertData extends BaseData {
         super(db, Advert, Advert);
     }
 
-    queryBuilder(props) {
-        const query = {};
+    filterBuilder(props) {
+        const filter = {};
         if (props.num.length > 0) {
-            query.num = props.num;
+            filter.num = props.num;
         }
         if (props.name.length > 0) {
-            query.name = props.name;
+            filter.name = props.name;
         }
         if (props.town.length > 0) {
-            query.town = props.town;
+            filter.town = props.town;
         }
         if (props.category.length > 0) {
-            query.category = props.category;
+            filter.category = props.category;
         }
-        return query;
+        filter.isDeleted = false;
+        return filter;
     }
 
     updateIsDeletedProperty(ad) {
@@ -41,10 +42,10 @@ class AdvertData extends BaseData {
     }
 
     deleteAd(num) {
-      return this.findByNum(num)
-                 .then((ad) => {
-                     return this.updateIsDeletedProperty(ad);
-                 });
+        return this.findByNum(num)
+            .then((ad) => {
+                return this.updateIsDeletedProperty(ad);
+            });
     }
 
     findFirst(props) {
@@ -52,7 +53,7 @@ class AdvertData extends BaseData {
     }
 
     filterDataBy(props) {
-        const query = this.queryBuilder(props);
+        const query = this.filterBuilder(props);
         return this.collection.find(query).toArray();
     }
 

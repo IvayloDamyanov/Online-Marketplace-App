@@ -8,3 +8,6 @@ block body
             li= 'Town: ' + model.town
             li= 'Category: ' + model.category
             li= 'Description: ' + model.description
+            a.btn.btn-default#delete-ad(href='/adverts/search' data-adnum=model.num)
+                | Delete Ad
+    script(src="/static/js/ads.js")
