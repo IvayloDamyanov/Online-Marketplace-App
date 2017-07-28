@@ -15,20 +15,20 @@ mixin nav()
                                 button.nav-btn
                                     | sign-out
                 li.list-item.dropdown
-                   a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
-                         ='Settings'
-                   ul.dropdown-list.list
-                      li.list-item
-                         a.nav-btn#nav-btn-item-all(href="/settings/users")
-                            | Users
-                      li.list-item
-                         a.nav-btn#nav-btn-item-add(href="settings/updateProfile")
-                            | Update
-                            | Profile
-                      li.list-item
-                                a.nav-btn#delete-user(href="#" data-userid=user._id)
-                                   | Delete 
-                                   = user.username
+                    a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
+                        ='Settings'
+                    ul.dropdown-list.list
+                        li.list-item
+                            a.nav-btn#nav-btn-item-all(href="/settings/users")
+                                | Users
+                        li.list-item
+                            a.nav-btn#nav-btn-item-add(href="settings/updateProfile")
+                                | Update
+                                | Profile
+                        li.list-item
+                            a.nav-btn#delete-user(href="#" data-userid=user._id)
+                                | Delete 
+                                = user.username
             else
                 li.list-item.dropdown
                     a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
@@ -41,22 +41,25 @@ mixin nav()
                             a.nav-btn#nav-btn-item-add(href="/auth/sign-in")
                                | Sign In
             li.list-item.dropdown
-               a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
-                 | Adverts
-               ul.dropdown-list.list
-                      li.list-item
-                         a.nav-btn#nav-btn-item-all(href="/adverts/all")
+                a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
+                    | Adverts
+                ul.dropdown-list.list
+                    li.list-item
+                        a.nav-btn#nav-btn-item-all(href="/adverts/all")
                             | Ads
-                      li.list-item
-                         a.nav-btn#nav-btn-item-all(href="/adverts/create")
-                              | Create ads
+                    li.list-item
+                        a.nav-btn#nav-btn-item-all(href="/adverts/create")
+                            | Create ads
+                    li.list-item
+                        a.nav-btn#nav-btn-item-all(href="/adverts/favs")
+                            | Favourite ads
             li.list-item.dropdown
-               a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
-                 | Search
-               ul.dropdown-list.list
-                   li.list-item
-                     a.nav-btn#nav-btn-item-all(href="/adverts/search")
-                              | Search ads
+                a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
+                    | Search
+                ul.dropdown-list.list
+                    li.list-item
+                        a.nav-btn#nav-btn-item-all(href="/adverts/search")
+                            | Search ads
 
     block scripts
        script(src="/static/js/users.js")

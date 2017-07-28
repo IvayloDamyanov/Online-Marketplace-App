@@ -6,6 +6,7 @@ const encrypt = encrypted.encrypt;
 class UserData extends BaseData {
     constructor(db) {
         super(db, User, User);
+        this.favourites = [];
     }
 
     findByUsername(username) {

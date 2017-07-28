@@ -29,7 +29,7 @@ class UsersController {
                 }
 
                 bodyUser.isDeleted = bodyUser.isDeleted || false;
-
+                bodyUser.favourites = [];
                 bodyUser.salt = encrypt.generateSalt();
                 bodyUser.password = encrypt.
                 generateHashedPassword(bodyUser.salt, bodyUser.password);

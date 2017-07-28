@@ -19,13 +19,19 @@ const attachTo = function(app, data) {
             return controller.getCurrentAds(req, res);
         })
         .post('/ads', auth.isAuthenticated, function(req, res) {
-            return controller.createAd(req, res);
+            return controller.createOrUpdateAd(req, res);
         })
-        .get('/:num', function(req, res) {
-            return controller.getAd(req, res);
+        .get('/favs', (req, res) => {
+            return controller.getFav(req, res);
+        })
+        .post('/favs', (req, res) => {
+            return controller.addToFav(req, res);
         })
         .delete('/ads', function(req, res) {
             return controller.deleteAd(req, res);
+        })
+        .get('/:num', function(req, res) {
+            return controller.getAd(req, res);
         });
 
     app.use('/adverts', router);

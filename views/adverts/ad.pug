@@ -1,13 +1,20 @@
 extends ../_shared/_master
 block body
-    .container
-        h1
-            | Single model
-            li= 'Num: ' + model.num
-            li= 'Name: ' + model.name
-            li= 'Town: ' + model.town
-            li= 'Category: ' + model.category
-            li= 'Description: ' + model.description
-            a.btn.btn-default#delete-ad(href='/adverts/search' data-adnum=model.num)
-                | Delete Ad
+    .container.row
+        .div.col-xs-6
+            h2
+                | Single model
+                li= 'Num: ' + model.num
+                li= 'Name: ' + model.name
+                li= 'Town: ' + model.town
+                li= 'Category: ' + model.category
+                li= 'Description: ' + model.description
+        .div.col-xs-6
+            //- if model.owner == user._id
+            li
+                a.btn.btn-default#delete-ad(href='/adverts/search' data-adnum=model.num)
+                    | Delete Ad
+            li    
+                a.btn.btn-default#fav-ad(href='' data-adnum=model.num)
+                    | Favourite
     script(src="/static/js/ads.js")

@@ -3,8 +3,26 @@ class AdvertsController {
         this.data = data;
     }
 
+    addToFav(req, res) {
+        // console.log(req.user);
+        const num = req.body.num;
+        const id = req.user._id;
+        const items = this.data.adverts.findFirst(num);
+
+        items.then((item) => {
+            const users = this.data.users.findById(id);
+            users.then((user) => {
+                this.data.adverts.addToFav(user, item);
+            });
+        });
+    }
+
+    getFav(req, res) {
+        const favourites = req.user.favourites;
+        return res.render('adverts/favs', { model: favourites });
+    }
+
     getAd(req, res) {
-        console.log('GET AD');
         const num = req.params.num.slice(5, req.params.num.length);
         const items = this.data.adverts.findFirst(num);
         items.then((item) => {
@@ -21,9 +39,9 @@ class AdvertsController {
     }
 
     getAds(req, res) {
-        console.log('GET ADSSSSSS');
         const model = req.query; // informaciqta ot poletata
         const items = this.data.adverts.filterDataBy(model);
+        
         items.then((item) => {
             res.render('adverts/ads', { model: item });
         });
@@ -36,19 +54,29 @@ class AdvertsController {
           });
     }
 
-    createAd(req, res) {
+    createOrUpdateAd(req, res) {
         const model = req.body;
-        model.isDeleted = model.isDeleted || false;
+        
         const num = model.num;
         const items = this.data.adverts.findFirst(num);
-
+        const status = {};
+        
         items.then((item) => {
             if (item) {
-                this.data.adverts.updateById(item, model);
+                status.num = item.num;
+                if (this.isOwner(item, req)) {
+                    this.data.adverts.updateById(item, model);
+                    status.msg = 'updated';
+                } else {
+                    status.msg = 'not updated. You are not the owner of this ad';
+                }
             } else {
+                model.owner = req.user._id;
                 this.data.adverts.create(model);
+                status.num = model.num;
+                status.msg = 'created';
             }
-            return res.redirect('/');
+            return res.render('adverts/status', { model: status });
         });
     }
 
@@ -64,6 +92,15 @@ class AdvertsController {
                 req.flash('error', err);
                 return res.send(err);
             });
+    }
+
+    isOwner(item, req) {
+        console.log(typeof item.owner);
+        console.log(typeof req.user._id);
+        if (String(item.owner) === String(req.user._id)) {
+            return true;
+        }
+        return false;
     }
 }
 

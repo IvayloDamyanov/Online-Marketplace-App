@@ -42,6 +42,12 @@ class BaseMongoDbData {
         });
     }
 
+    findByUsername(username) {
+        return this
+            .filterBy({ username: new RegExp(username, 'i') })
+            .then(([user]) => user);
+    }
+
     findOrCreateBy(props) {
         return this.filterBy(props)
             .then(([model]) => {

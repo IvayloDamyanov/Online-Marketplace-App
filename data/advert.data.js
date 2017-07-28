@@ -1,9 +1,25 @@
 const Advert = require('../models/advert.model');
 const BaseData = require('./base/base.data');
+const UserData = require('./users.data');
 
 class AdvertData extends BaseData {
     constructor(db) {
         super(db, Advert, Advert);
+    }
+
+    addToFav(target, fav) {
+        const userData = new UserData(this.db);
+        return userData.findByUsername(target.username)
+            .then((user) => {
+                if (!user) {
+                    throw new Error('Invalid user !');
+                }
+
+                return userData.collection.updateOne({
+                        username: user.username,
+                }, { $push: { 'favourites': fav } },
+                { upsert: true });
+            });
     }
 
     filterBuilder(props) {
@@ -20,7 +36,6 @@ class AdvertData extends BaseData {
         if (props.category.length > 0) {
             filter.category = props.category;
         }
-        filter.isDeleted = false;
         return filter;
     }
 
@@ -42,10 +57,15 @@ class AdvertData extends BaseData {
     }
 
     deleteAd(num) {
-        return this.findByNum(num)
-            .then((ad) => {
-                return this.updateIsDeletedProperty(ad);
-            });
+        return this.collection.remove({
+            num: num,
+        }, {
+            justOne: true,
+        });
+        // return this.findByNum(num)
+        //     .then((ad) => {
+        //         return this.updateIsDeletedProperty(ad);
+        //     });
     }
 
     findFirst(props) {
