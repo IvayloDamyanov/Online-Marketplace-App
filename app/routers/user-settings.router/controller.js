@@ -53,7 +53,7 @@ class UserSettingsController {
             context.friend = req.query.user;
         }
 
-        res.status(200).render('messages', { context });
+        res.status(200).render('settings/messages', { context });
     }
 }
 

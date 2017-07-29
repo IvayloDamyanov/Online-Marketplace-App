@@ -1,7 +1,0 @@
-extends ../_shared/_master
-block body
-    .container
-        if user.friends.some(x => x._id.toString() === user._id.toString())
-                                    .btn-group.col-sm-offset-1
-                                        a.btn.btn-danger#chat(href=`/settings/messages?user=${user.username}`)
-                                          | Chat
