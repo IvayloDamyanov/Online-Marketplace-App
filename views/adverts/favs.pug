@@ -4,12 +4,12 @@ block body
         h1
             | Favourite Ads
         each item in model
-            ul
-                li= 'Number: ' + item.num
-                li= 'Name: ' + item.name
-                li= 'Town: ' + item.town
-                li= 'Category: ' + item.category
-                li= 'Description: ' + item.description
+            .div.col-xs-6
+                div.h2= item.name
+                div.h4= 'Number: ' + item.num
+                div.h4= 'Town: ' + item.town
+                div.h4= 'Category: ' + item.category
+                div.h4= 'Description: ' + item.description
                 a.btn.btn-default.delete-fav(href='/adverts/favs' data-adnum=item.num)
                     | Remove from Favourites
     script(src="/static/js/delFav.js")

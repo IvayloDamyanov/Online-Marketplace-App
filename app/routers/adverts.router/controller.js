@@ -49,7 +49,7 @@ class AdvertsController {
     getCurrentAds(req, res) {
         this.data.adverts.getAllAds()
           .then((ad) => {
-              return res.render('adverts/all', { model: ad });
+              return res.render('adverts/ads', { model: ad });
           });
     }
 

@@ -2,19 +2,18 @@ extends ../_shared/_master
 block body
     .container.row
         .div.col-xs-6
-            h2
-                | Single model
-                li= 'Num: ' + model.num
-                li= 'Name: ' + model.name
-                li= 'Town: ' + model.town
-                li= 'Category: ' + model.category
-                li= 'Description: ' + model.description
+            div.h2= model.name
+            div.h4= 'Number: ' + model.num
+            div.h4= 'Town: ' + model.town
+            div.h4= 'Category: ' + model.category
+            div.h4= 'Description: ' + model.description
         .div.col-xs-6
-            //- if model.owner == user._id
-            li
-                a.btn.btn-default#delete-ad(href='/adverts/search' data-adnum=model.num)
-                    | Delete Ad
-            li    
+            h2= ''
+            if model.owner == String(user._id)
+                h2
+                    a.btn.btn-default#delete-ad(href='/adverts/search' data-adnum=model.num)
+                        | Delete Ad
+            h2
                 a.btn.btn-default#fav-ad(href='' data-adnum=model.num)
                     | Favourite
     script(src="/static/js/delAd.js")

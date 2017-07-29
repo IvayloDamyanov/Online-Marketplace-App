@@ -4,10 +4,10 @@ block body
         h1
             | Ads
         each ad in model
-            ul
-                li  
-                    | Num: 
+            ul.h4.list-unstyled
+                li.h3= 'Number: '
                     a(href=':num=' + ad.num) #{ad.num}
                 li= 'Name: ' + ad.name
                 li= 'Town: ' + ad.town
                 li= 'Category: ' + ad.category
+            h4='-=-=-=-=-=-=-=-'

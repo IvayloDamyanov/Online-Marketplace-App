@@ -2,19 +2,19 @@ extends ../_shared/_master
 block body
     .container
         if user
-            h3
+            h3.col-xs-6
                 form(action = "/adverts/ads/" method = "post")
                     | Create/Update by number
-                    h4
-                        | Num: 
+                    div.h4
+                        div= 'Num: '
                         input(type="text" name="num" value="")
-                        | Name: 
+                        div= 'Name: '
                         input(type="text" name="name" value="")
-                        | Town: 
+                        div= 'Town: '
                         input(type="text" name="town" value="")
-                        | Category: 
+                        div= 'Category: '
                         input(type="text" name="category" value="")
-                        | Description: 
-                        input(type="text" name="description" value="")
+                        div= 'Description: '
+                        textarea(type="text" rows="5" name="description" value="")
                         data(name="owner" value=user)
-                    input(type="submit", value="Submit")
+                    input(type="submit", value="Create/Update")

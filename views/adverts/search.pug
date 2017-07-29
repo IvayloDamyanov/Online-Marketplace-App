@@ -1,16 +1,16 @@
 extends ../_shared/_master
 block body
     .container
-        h3
+        h3.col-xs-6
             form(action = "/adverts/ads" method = "get")
-                | Search
-                h4
-                    | Num: 
+                | Search Ads
+                div.h4
+                    div= 'Num: '
                     input(type="text" name="num" value="")
-                    | Name: 
+                    div= 'Name: '
                     input(type="text" name="name" value="")
-                    | Town: 
+                    div= 'Town: '
                     input(type="text" name="town" value="")
-                    | Category: 
+                    div= 'Category: '
                     input(type="text" name="category" value="")
-                input(type="submit", value="Submit")
+                input(type="submit", value="Search")
