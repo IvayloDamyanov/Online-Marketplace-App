@@ -28,6 +28,29 @@ const configSockets = (app, { users }) => {
         success: onAuthorizationSuccess,
         error: onAuthorizationFail,
     }));
+
+    io.on('connection', (socket) => {
+        socket.on('add-friend', (friendId) => {
+            users.findById(friendId)
+                 .then((friend) => {
+                     users.addFriendship(
+                         socket.request.user,
+                         friend
+                     );
+
+                     return friend;
+                 })
+                 .then((targetUser) => {
+                     passportSocket.filterSocketsByUser(io, (user) => {
+                         return user._id.toString() ===
+                            targetUser._id.toString();
+                     })
+                     .forEach((sock) => {
+                         sock.emit('add-friend', socket.request.user);
+                     });
+                 });
+        });
+    });
 };
 
 module.exports = configSockets;

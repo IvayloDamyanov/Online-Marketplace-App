@@ -53,30 +53,21 @@ class UserData extends BaseData {
     updateProfile(target) {
         this.findByUsername(target.username)
             .then((user) => {
-                return this.collection.update(
+                return this.collection.updateOne(
                     { username: user.username },
-                    { username: user.username,
-                      password: user.password,
-                      salt: user.salt,
+                    { $set: {
                       nickname: target.nickname,
                       age: target.age,
                       gender: target.gender,
-                      interests: target.interests },
+                      interests: target.interests } },
                       { upsert: true });
             });
     }
 
     updateIsDeletedProperty(user) {
-        return this.collection.update(
+        return this.collection.updateOne(
             { username: user.username },
-            { username: user.username,
-              password: user.password,
-              salt: user.salt,
-              nickname: user.nickname,
-              age: user.age,
-              gender: user.gender,
-              interests: user.interests,
-              isDeleted: true },
+            { $set: { isDeleted: true } },
             { upsert: true });
     }
 
@@ -89,6 +80,30 @@ class UserData extends BaseData {
 
     getAllUsers() {
         return this.getAll();
+    }
+
+    addFriendship(user, friend) {
+        const friendModel = (userInfo) => {
+            return {
+              _id: userInfo._id,
+              username: userInfo.username,
+              password: userInfo.password,
+              salt: userInfo.salt,
+              nickname: userInfo.nickname,
+              age: userInfo.age,
+              gender: userInfo.gender,
+              interests: userInfo.interests,
+              isDeleted: userInfo.isDeleted,
+              messages: [],
+            };
+        };
+
+        user.friends.push(friendModel(friend));
+        this.updateById(user, user);
+
+        friend.notifications.push(`${user.username} added you as a friend!`);
+        friend.friends.push(friendModel(user));
+        this.updateById(friend, friend);
     }
 }
 

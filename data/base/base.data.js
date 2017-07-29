@@ -63,6 +63,10 @@ class BaseMongoDbData {
     }
 
     updateById(target, model) {
+        if (typeof model === 'undefined' || typeof target === 'undefined') {
+            return Promise.reject('Model or Target is undefined!');
+        }
+
         return this.collection.updateOne({
             _id: target._id,
         }, model);
