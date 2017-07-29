@@ -61,6 +61,17 @@ const configSockets = (app, { users }) => {
                      users.updateById(user, user);
                  });
         });
+        socket.on('show-messages', (friendId) => {
+            users.findById(socket.request.user._id.toString())
+                 .then((user) => {
+                     return user.friends
+                                .find((x) => x._id.toString() === friendId);
+                 })
+                 .then((friend) => {
+                     const messages = friend.messages;
+                     socket.emit('show-messages', messages);
+                 });
+        });
     });
 };
 
