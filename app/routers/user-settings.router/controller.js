@@ -17,11 +17,24 @@ class UserSettingsController {
         });
     }
 
+     getSearch(req, res) {
+        return res.render('settings/search');
+    }
+
     getUsers(req, res) {
         this.data.users.getAllUsers()
           .then((user) => {
               return res.render('settings/users', { model: user });
           });
+    }
+
+    getUser(req, res) {
+        const model = req.query;
+        const items = this.data.users.filterDataBy(model);
+
+        items.then((item) => {
+            res.render('settings/users', { model: item });
+        });
     }
 
     getUpdateProfile(req, res) {

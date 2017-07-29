@@ -57,11 +57,7 @@ class AdvertData extends BaseData {
     updateIsDeletedProperty(ad) {
         return this.collection.update(
             { num: ad.num },
-            { num: ad.num,
-              name: ad.name,
-              town: ad.town,
-              category: ad.category,
-              isDeleted: true },
+            { $set: { isDeleted: true } },
             { upsert: true });
     }
 

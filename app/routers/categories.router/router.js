@@ -6,8 +6,8 @@ const attachTo = (app, data) => {
     router
         .get('/', (req, res) => {
             return data.categories.getAll()
-                .then((adverts) => {
-                    return res.send(adverts);
+                .then((categories) => {
+                    return res.send(categories);
                 });
         });
 

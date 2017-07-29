@@ -1,0 +1,12 @@
+extends ../_shared/_master
+block body
+    .container
+        h3.col-xs-6
+            form(action = "/settings/users" method = "get")
+                | Search Users
+                div.h4
+                    div= 'Username: '
+                    input(type="text" name="username" value="")
+                    div= 'Nickname: '
+                    input(type="text" name="nickname" value="")
+                input(type="submit", value="Search")

@@ -9,6 +9,22 @@ class UserData extends BaseData {
         this.favourites = [];
     }
 
+    filterBuilder(props) {
+        const filter = {};
+        if (props.username.length > 0) {
+            filter.username = props.username;
+        }
+        if (props.nickname.length > 0) {
+            filter.nickname = props.nickname;
+        }
+        return filter;
+    }
+
+    filterDataBy(props) {
+        const query = this.filterBuilder(props);
+        return this.collection.find(query).toArray();
+    }
+
     findByUsername(username) {
         return this
             .filterBy({ username: new RegExp(username, 'i') })

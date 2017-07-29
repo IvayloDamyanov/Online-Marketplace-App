@@ -9,11 +9,17 @@ const attachTo = (app, data) => {
         .get('/users', (req, res) => {
             return controller.getUsers(req, res);
         })
+        .get('/users', auth.isAuthenticated, (res, req) => {
+            return controller.getUser(req, res);
+        })
         .get('/updateProfile', (req, res) => {
             return controller.getUpdateProfile(req, res);
         })
         .get('/messages', auth.isAuthenticated, (req, res) => {
             return controller.getMessageView(req, res);
+        })
+        .get('/search', function(req, res) {
+            return controller.getSearch(req, res);
         })
         .post('/users/:id', (req, res) => {
             return controller.updateUser(req, res);
