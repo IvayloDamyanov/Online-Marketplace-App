@@ -50,6 +50,17 @@ const configSockets = (app, { users }) => {
                      });
                  });
         });
+        socket.on('remove-notification', (notification) => {
+            const notifications = socket.request.user.notifications;
+            const index = notifications.findIndex((x) => x === notification);
+            notifications.splice(index, 1);
+
+            users.findById(socket.request.user._id.toString())
+                 .then((user) => {
+                     user.notifications = notifications;
+                     users.updateById(user, user);
+                 });
+        });
     });
 };
 
