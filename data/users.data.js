@@ -105,6 +105,42 @@ class UserData extends BaseData {
         friend.friends.push(friendModel(user));
         this.updateById(friend, friend);
     }
+
+    addChatMessage(user, friend, message) {
+        const userRelation = user.friends
+              .find((x) => x._id.toString() === friend._id.toString());
+
+        const friendRelation = friend.friends
+              .find((x) => x._id.toString() === user._id.toString());
+
+        if (userRelation === 'undefined' || friendRelation === 'undefined') {
+            return Promise.reject('The users must be friends to chat!');
+        }
+
+        const date = Date.now();
+        const messageModel = {
+            newMessage: false,
+            senderId: user._id,
+            username: user.username,
+            time: date,
+            message,
+        };
+
+        userRelation.messages.push(messageModel);
+        this.updateById(user, user);
+
+        const notification = `${user.username} texted you!`;
+
+        if (!friend.notifications.some((x) => x === notification)) {
+            friend.notifications.push(notification);
+            messageModel.newMessage = true;
+        }
+
+        friendRelation.messages.push(messageModel);
+        this.updateById(friend, friend);
+
+        return Promise.resolve(messageModel);
+    }
 }
 
 module.exports = UserData;

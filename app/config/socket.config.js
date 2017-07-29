@@ -72,7 +72,33 @@ const configSockets = (app, { users }) => {
                      socket.emit('show-messages', messages);
                  });
         });
+        socket.on('send-message', ({ friendId, message }) => {
+            Promise.all([
+                users.findById(socket.request.user._id.toString()),
+                users.findById(friendId),
+            ])
+            .then(([user, friend]) => {
+                users.addChatMessage(user, friend, message)
+                     .then((messageModel) => {
+                         socket.emit('send-message', messageModel);
+
+                         passportSocket.filterSocketsByUser(io, (userModel) => {
+                             return userModel._id.toString() ===
+                             friend._id.toString();
+                         })
+                         .forEach((sock) => {
+                             sock.emit('send-message', messageModel);
+                             if (messageModel.newMessage) {
+                                 sock.emit('message-notification',
+                                 messageModel.username);
+                             }
+                         });
+                     });
+            });
+        });
     });
+
+    return server;
 };
 
 module.exports = configSockets;
