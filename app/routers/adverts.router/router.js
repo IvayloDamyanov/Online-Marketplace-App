@@ -27,10 +27,13 @@ const attachTo = function(app, data) {
         .post('/favs', (req, res) => {
             return controller.addToFav(req, res);
         })
-        .delete('/ads', function(req, res) {
+        .delete('/favs', (req, res) => {
+            return controller.deleteFav(req, res);
+        })
+        .delete('/ads', (req, res) => {
             return controller.deleteAd(req, res);
         })
-        .get('/:num', function(req, res) {
+        .get('/:num', (req, res) => {
             return controller.getAd(req, res);
         });
 

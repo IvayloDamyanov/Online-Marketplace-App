@@ -22,6 +22,21 @@ class AdvertData extends BaseData {
             });
     }
 
+    removeFromFav(target, fav) {
+        const userData = new UserData(this.db);
+        return userData.findByUsername(target.username)
+            .then((user) => {
+                if (!user) {
+                    throw new Error('Invalid user !');
+                }
+
+                return userData.collection.updateOne({
+                        username: user.username,
+                }, { $pull: { 'favourites': fav } },
+                { upsert: true });
+            });
+    }
+
     filterBuilder(props) {
         const filter = {};
         if (props.num.length > 0) {
@@ -62,10 +77,6 @@ class AdvertData extends BaseData {
         }, {
             justOne: true,
         });
-        // return this.findByNum(num)
-        //     .then((ad) => {
-        //         return this.updateIsDeletedProperty(ad);
-        //     });
     }
 
     findFirst(props) {

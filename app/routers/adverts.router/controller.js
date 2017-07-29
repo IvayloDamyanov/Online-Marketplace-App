@@ -4,7 +4,6 @@ class AdvertsController {
     }
 
     addToFav(req, res) {
-        // console.log(req.user);
         const num = req.body.num;
         const id = req.user._id;
         const items = this.data.adverts.findFirst(num);
@@ -39,9 +38,9 @@ class AdvertsController {
     }
 
     getAds(req, res) {
-        const model = req.query; // informaciqta ot poletata
+        const model = req.query;
         const items = this.data.adverts.filterDataBy(model);
-        
+
         items.then((item) => {
             res.render('adverts/ads', { model: item });
         });
@@ -56,11 +55,11 @@ class AdvertsController {
 
     createOrUpdateAd(req, res) {
         const model = req.body;
-        
+
         const num = model.num;
         const items = this.data.adverts.findFirst(num);
         const status = {};
-        
+
         items.then((item) => {
             if (item) {
                 status.num = item.num;
@@ -68,7 +67,8 @@ class AdvertsController {
                     this.data.adverts.updateById(item, model);
                     status.msg = 'updated';
                 } else {
-                    status.msg = 'not updated. You are not the owner of this ad';
+                    status.msg = 'not updated. '
+                                + 'You are not the owner of this ad';
                 }
             } else {
                 model.owner = req.user._id;
@@ -94,9 +94,20 @@ class AdvertsController {
             });
     }
 
+    deleteFav(req, res) {
+        const num = req.body.num;
+        const id = req.user._id;
+        const items = this.data.adverts.findFirst(num);
+
+        items.then((item) => {
+            const users = this.data.users.findById(id);
+            users.then((user) => {
+                this.data.adverts.removeFromFav(user, item);
+            });
+        });
+    }
+
     isOwner(item, req) {
-        console.log(typeof item.owner);
-        console.log(typeof req.user._id);
         if (String(item.owner) === String(req.user._id)) {
             return true;
         }

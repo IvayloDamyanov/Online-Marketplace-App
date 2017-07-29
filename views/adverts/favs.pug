@@ -10,3 +10,6 @@ block body
                 li= 'Town: ' + item.town
                 li= 'Category: ' + item.category
                 li= 'Description: ' + item.description
+                a.btn.btn-default.delete-fav(href='/adverts/favs' data-adnum=item.num)
+                    | Remove from Favourites
+    script(src="/static/js/delFav.js")
