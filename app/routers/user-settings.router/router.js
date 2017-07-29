@@ -12,6 +12,9 @@ const attachTo = (app, data) => {
         .get('/updateProfile', (req, res) => {
             return controller.getUpdateProfile(req, res);
         })
+        .get('/messages', auth.isAuthenticated, (req, res) => {
+            return controller.getMessageView(req, res);
+        })
         .post('/users/:id', (req, res) => {
             return controller.updateUser(req, res);
         })

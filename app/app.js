@@ -14,7 +14,9 @@ const init = (data) => {
 
     require('./routers').attachTo(app, data);
 
-    return Promise.resolve(app);
+    const server = require('./config/socket.config')(app, data);
+
+    return Promise.resolve(server);
 };
 
 module.exports = { init };

@@ -42,6 +42,19 @@ class UserSettingsController {
                 return res.send(err);
             });
     }
+
+    getMessageView(req, res) {
+        const context = {
+            user: req.user,
+            friend: '',
+        };
+
+        if (req.query.user) {
+            context.friend = req.query.user;
+        }
+
+        res.status(200).render('messages', { context });
+    }
 }
 
 const init = (data) => {
