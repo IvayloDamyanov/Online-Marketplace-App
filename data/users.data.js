@@ -11,10 +11,11 @@ class UserData extends BaseData {
 
     filterBuilder(props) {
         const filter = {};
-        if (props.username.length > 0) {
+        filter.isDeleted = false;
+        if (props.username && props.username.length > 0) {
             filter.username = props.username;
         }
-        if (props.nickname.length > 0) {
+        if (props.username && props.nickname.length > 0) {
             filter.nickname = props.nickname;
         }
         return filter;
@@ -92,10 +93,6 @@ class UserData extends BaseData {
                  .then((user) => {
                      return this.updateIsDeletedProperty(user);
                  });
-    }
-
-    getAllUsers() {
-        return this.getAll();
     }
 
     addFriendship(user, friend) {
