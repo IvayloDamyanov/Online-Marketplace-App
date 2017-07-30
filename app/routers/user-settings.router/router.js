@@ -7,9 +7,6 @@ const attachTo = (app, data) => {
 
     router
         .get('/users', auth.isAuthenticated, (req, res) => {
-            return controller.getUser(req, res);
-        })
-        .get('/users', (req, res) => {
             return controller.getUsers(req, res);
         })
         .get('/updateProfile', (req, res) => {

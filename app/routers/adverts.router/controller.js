@@ -3,10 +3,18 @@ class AdvertsController {
         this.data = data;
     }
 
+    getCreate(req, res) {
+        return res.render('adverts/create');
+    }
+
+    getSearch(req, res) {
+        return res.render('adverts/search');
+    }
+
     addToFav(req, res) {
         const num = req.body.num;
         const id = req.user._id;
-        const items = this.data.adverts.findFirst(num);
+        const items = this.data.adverts.findByNum(num);
 
         items.then((item) => {
             const users = this.data.users.findById(id);
@@ -21,20 +29,25 @@ class AdvertsController {
         return res.render('adverts/favs', { model: favourites });
     }
 
-    getAd(req, res) {
-        const num = req.params.num.slice(5, req.params.num.length);
-        const items = this.data.adverts.findFirst(num);
+    deleteFav(req, res) {
+        const num = req.body.num;
+        const id = req.user._id;
+        const items = this.data.adverts.findByNum(num);
+
         items.then((item) => {
-            res.render('adverts/ad', { model: item });
+            const users = this.data.users.findById(id);
+            users.then((user) => {
+                this.data.adverts.removeFromFav(user, item);
+            });
         });
     }
 
-    getCreate(req, res) {
-        return res.render('adverts/create');
-    }
-
-    getSearch(req, res) {
-        return res.render('adverts/search');
+    getAd(req, res) {
+        const num = req.params.num.slice(5, req.params.num.length);
+        const items = this.data.adverts.findByNum(num);
+        items.then((item) => {
+            res.render('adverts/ad', { model: item });
+        });
     }
 
     getAds(req, res) {
@@ -46,6 +59,7 @@ class AdvertsController {
         });
     }
 
+<<<<<<< HEAD
     getCurrentAds(req, res) {
         return this.data.adverts.getAllAds()
           .then((ad) => {
@@ -53,11 +67,13 @@ class AdvertsController {
           });
     }
 
+=======
+>>>>>>> dc77c1a611bd7bc4dc7b3ee405cc5dea7bbc7582
     createOrUpdateAd(req, res) {
         const model = req.body;
 
         const num = model.num;
-        const items = this.data.adverts.findFirst(num);
+        const items = this.data.adverts.findByNum(num);
         const status = {};
 
         items.then((item) => {
@@ -85,26 +101,13 @@ class AdvertsController {
         this.data.adverts.deleteAd(num)
             .then(() => {
                 res.status(200).json({
-                    // redirect: 'adverts/all',
+                    redirect: 'adverts/ads',
                 });
             })
             .catch((err) => {
                 req.flash('error', err);
                 return res.send(err);
             });
-    }
-
-    deleteFav(req, res) {
-        const num = req.body.num;
-        const id = req.user._id;
-        const items = this.data.adverts.findFirst(num);
-
-        items.then((item) => {
-            const users = this.data.users.findById(id);
-            users.then((user) => {
-                this.data.adverts.removeFromFav(user, item);
-            });
-        });
     }
 
     isOwner(item, req) {

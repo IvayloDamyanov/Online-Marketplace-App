@@ -26,7 +26,7 @@ mixin nav()
                                 | Update
                                 | Profile
                         li.list-item
-                            a.nav-btn#delete-user(href="#" data-userid=user._id)
+                            a.nav-btn#delete-user(href="" data-userid=user._id)
                                 | Delete 
                                 = user.username
             else
@@ -45,7 +45,7 @@ mixin nav()
                     | Adverts
                 ul.dropdown-list.list
                     li.list-item
-                        a.nav-btn#nav-btn-item-all(href="/adverts/all")
+                        a.nav-btn#nav-btn-item-all(href="/adverts/ads")
                             | Ads
                     li.list-item
                         a.nav-btn#nav-btn-item-all(href="/adverts/create")
@@ -60,9 +60,10 @@ mixin nav()
                     li.list-item
                         a.nav-btn#nav-btn-item-all(href="/adverts/search")
                             | Search ads
-                    li.list-item
-                        a.nav-btn#nav-btn-item-all(href="/settings/search")
-                            | Search users
+                    if user
+                        li.list-item
+                            a.nav-btn#nav-btn-item-all(href="/settings/search")
+                                | Search users
 
     block scripts
        script(src="/static/js/users.js")

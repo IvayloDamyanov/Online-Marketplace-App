@@ -22,18 +22,11 @@ class UserSettingsController {
     }
 
     getUsers(req, res) {
-        this.data.users.getAllUsers()
-          .then((user) => {
-              return res.render('settings/users', { model: user });
-          });
-    }
-
-    getUser(req, res) {
         const model = req.query;
-        const items = this.data.users.filterDataBy(model);
+        const users = this.data.users.filterDataBy(model);
 
-        items.then((item) => {
-            res.render('settings/users', { model: item });
+        users.then((user) => {
+            res.render('settings/users', { model: user });
         });
     }
 

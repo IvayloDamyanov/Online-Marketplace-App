@@ -39,16 +39,16 @@ class AdvertData extends BaseData {
 
     filterBuilder(props) {
         const filter = {};
-        if (props.num.length > 0) {
+        if (props.num && props.num.length > 0) {
             filter.num = props.num;
         }
-        if (props.name.length > 0) {
+        if (props.name && props.name.length > 0) {
             filter.name = props.name;
         }
-        if (props.town.length > 0) {
+        if (props.town && props.town.length > 0) {
             filter.town = props.town;
         }
-        if (props.category.length > 0) {
+        if (props.category && props.category.length > 0) {
             filter.category = props.category;
         }
         return filter;
@@ -66,10 +66,6 @@ class AdvertData extends BaseData {
         }, {
             justOne: true,
         });
-    }
-
-    findFirst(props) {
-        return this.collection.findOne({ num: props });
     }
 
     filterDataBy(props) {
