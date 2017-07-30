@@ -48,20 +48,6 @@ class BaseMongoDbData {
             .then(([user]) => user);
     }
 
-    findOrCreateBy(props) {
-        return this.filterBy(props)
-            .then(([model]) => {
-                if (!model) {
-                    model = {};
-                    return this.collection.insert(model)
-                        .then(() => {
-                            return model;
-                        });
-                }
-                return model;
-            });
-    }
-
     updateById(target, model) {
         if (typeof model === 'undefined' || typeof target === 'undefined') {
             return Promise.reject('Model or Target is undefined!');
