@@ -54,8 +54,8 @@ class AdvertsController {
         const model = req.query;
         const items = this.data.adverts.filterDataBy(model);
 
-        items.then((item) => {
-            res.render('adverts/ads', { model: item });
+        return items.then((item) => {
+            return res.render('adverts/ads', { model: item });
         });
     }
 
