@@ -55,15 +55,8 @@ class AdvertsController {
         const items = this.data.adverts.filterDataBy(model);
 
         return items.then((item) => {
-             return res.render('adverts/ads', { model: item });
+            return res.render('adverts/ads', { model: item });
         });
-    }
-
-    getCurrentAds(req, res) {
-        return this.data.adverts.getAllAds()
-          .then((ad) => {
-              return res.render('adverts/ads', { model: ad });
-          });
     }
 
     createOrUpdateAd(req, res) {
