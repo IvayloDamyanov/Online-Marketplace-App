@@ -1,4 +1,6 @@
 const gulp = require('gulp');
+const istanbul = require('gulp-istanbul');
+const mocha = require('gulp-mocha');
 
 gulp.task('server:start', () => {
     return require('./server');
@@ -19,6 +21,32 @@ gulp.task('start:server', () => {
                 config.port,
                 () => console.log(`Magic happens at :${config.port}`));
         });
+});
+
+gulp.task('pre-test', () => {
+    return gulp.src([
+        './data/**/*.js',
+        './app/**/*.js',
+        './config/**/*.js',
+        './db/**/*.js',
+        './models/**/*.js',
+        './server.js',
+    ])
+        .pipe(istanbul({
+            includeUntested: true,
+        }))
+        .pipe(istanbul.hookRequire());
+});
+
+gulp.task('tests:unit', ['pre-test'], () => {
+    return gulp.src([
+        './test/unit/**/*.js',
+        './test/integration/**/*.js',
+    ])
+        .pipe(mocha({
+            reporter: 'nyan',
+        }))
+        .pipe(istanbul.writeReports());
 });
 
 const { MongoClient } = require('mongodb');
