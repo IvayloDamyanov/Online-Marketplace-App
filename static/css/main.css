@@ -27,6 +27,7 @@ h1 {
     width: 100%;
     left: 0;
     display: none;
+    z-index: 10;
 }
 
 .nav {
@@ -60,4 +61,8 @@ h1 {
 
 .nav .list {
     background: black;
+}
+
+.h4 {
+    z-index: -1;
 }

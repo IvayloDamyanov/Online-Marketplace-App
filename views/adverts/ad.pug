@@ -13,8 +13,8 @@ block body
                 h2
                     a.btn.btn-default#delete-ad(href='/adverts/search' data-adnum=model.num)
                         | Delete Ad
+                script(src="/static/js/delAd.js")
             h2
                 a.btn.btn-default#fav-ad(href='' data-adnum=model.num)
                     | Favourite
-    script(src="/static/js/delAd.js")
-    script(src="/static/js/favAdd.js")
+                script(src="/static/js/favAdd.js")
