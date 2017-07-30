@@ -6,11 +6,11 @@ const attachTo = (app, data) => {
     const controller = require('./controller').init(data);
 
     router
+        .get('/users', auth.isAuthenticated, (req, res) => {
+            return controller.getUser(req, res);
+        })
         .get('/users', (req, res) => {
             return controller.getUsers(req, res);
-        })
-        .get('/users', auth.isAuthenticated, (res, req) => {
-            return controller.getUser(req, res);
         })
         .get('/updateProfile', (req, res) => {
             return controller.getUpdateProfile(req, res);

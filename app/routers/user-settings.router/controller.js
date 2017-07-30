@@ -17,7 +17,7 @@ class UserSettingsController {
         });
     }
 
-     getSearch(req, res) {
+    getSearch(req, res) {
         return res.render('settings/search');
     }
 
