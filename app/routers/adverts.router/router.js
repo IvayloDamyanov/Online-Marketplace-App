@@ -35,7 +35,7 @@ const attachTo = function(app, data) {
         })
         .get('/:num', (req, res) => {
             return controller.getAd(req, res);
-        });
+        }); // always last
 
     app.use('/adverts', router);
 };

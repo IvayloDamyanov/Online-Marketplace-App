@@ -4,9 +4,10 @@ block body
         h1
             | Users
         each user in model
-            ul
-                li= 'Username ' + user.username
-                li= 'Nickname ' + user.nickname 
-                li= 'Age ' + user.age
-                li= 'Gender ' + user.gender
-                li= 'Interested in ' + user.interests
+            ul.h4.list-unstyled
+                li= 'Username: ' + user.username
+                li= 'Nickname: ' + user.nickname 
+                li= 'Age: ' + user.age
+                li= 'Gender: ' + user.gender
+                li= 'Interested in: ' + user.interests
+            h4='-=-=-=-=-=-=-=-'
