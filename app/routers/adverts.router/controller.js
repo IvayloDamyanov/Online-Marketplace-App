@@ -59,7 +59,6 @@ class AdvertsController {
         });
     }
 
-<<<<<<< HEAD
     getCurrentAds(req, res) {
         return this.data.adverts.getAllAds()
           .then((ad) => {
@@ -67,8 +66,6 @@ class AdvertsController {
           });
     }
 
-=======
->>>>>>> dc77c1a611bd7bc4dc7b3ee405cc5dea7bbc7582
     createOrUpdateAd(req, res) {
         const model = req.body;
 
