@@ -73,7 +73,7 @@ class AdvertsController {
         const items = this.data.adverts.findByNum(num);
         const status = {};
 
-        items.then((item) => {
+        return items.then((item) => {
             if (item) {
                 status.num = item.num;
                 if (this.isOwner(item, req)) {

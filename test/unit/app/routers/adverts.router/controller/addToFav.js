@@ -41,7 +41,7 @@ describe('adverts controller', () => {
     beforeEach(() => {
         data = {
             adverts: {
-                findFirst(num) {
+                findByNum(num) {
                     const newAd = adverts.find((x) => x.num === num);
                     return Promise.resolve(newAd);
                 },
