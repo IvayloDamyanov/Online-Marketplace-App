@@ -3,67 +3,67 @@ mixin nav()
     nav.nav
         ul.list.list-horizontal
             li.list-item
-                a.nav-btn(href="/")
+                a.nav-btn#home-btn(href="/")
                     | Marketplace System
             if user
                 li.list-item.dropdown
-                    a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
+                    a.nav-btn.dropdown-toggle#nav-btn-toggle-user(href="#")
                         =user.username
                     ul.dropdown-list.list
                         li.list-item
                             form(action="/auth/sign-out" method="get")
-                                button.nav-btn
+                                button.nav-btn#sign-out
                                     | sign-out
                 li.list-item.dropdown
-                    a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
+                    a.nav-btn.dropdown-toggle#nav-btn-toggle-settings(href="#")
                         ='Settings'
                     ul.dropdown-list.list
                         li.list-item
-                            a.nav-btn#nav-btn-item-all(href="/settings/users")
+                            a.nav-btn#nav-btn-users(href="/settings/users")
                                 | Users
                         li.list-item
-                            a.nav-btn#nav-btn-item-add(href="/settings/updateProfile")
+                            a.nav-btn#nav-btn-update-profile(href="/settings/updateProfile")
                                 | Update
                                 | Profile
                         li.list-item
-                            a.nav-btn#delete-user(href="" data-userid=user._id)
+                            a.nav-btn#nav-btn-delete-user(href="#" data-userid=user._id)
                                 | Delete 
                                 = user.username
             else
                 li.list-item.dropdown
-                    a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
+                    a.nav-btn.dropdown-toggle#nav-btn-toggle-user(href="#")
                         | User
                     ul.dropdown-list.list
                         li.list-item
-                            a.nav-btn#nav-btn-item-all(href="/auth/sign-up")
+                            a.nav-btn#nav-btn-sign-up(href="/auth/sign-up")
                                 | Sign Up
                         li.list-item
-                            a.nav-btn#nav-btn-item-add(href="/auth/sign-in")
+                            a.nav-btn#nav-btn-sign-in(href="/auth/sign-in")
                                | Sign In
             li.list-item.dropdown
-                a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
+                a.nav-btn.dropdown-toggle#nav-btn-toggle-adverts(href="#")
                     | Adverts
                 ul.dropdown-list.list
                     li.list-item
-                        a.nav-btn#nav-btn-item-all(href="/adverts/ads")
+                        a.nav-btn#nav-btn-all-ads(href="/adverts/ads")
                             | Ads
                     if user
                         li.list-item
-                            a.nav-btn#nav-btn-item-all(href="/adverts/create")
+                            a.nav-btn#nav-btn-create-ad(href="/adverts/create")
                                 | Create ads
                         li.list-item
-                            a.nav-btn#nav-btn-item-all(href="/adverts/favs")
+                            a.nav-btn#nav-btn-favourite-ads(href="/adverts/favs")
                                 | Favourite ads
             li.list-item.dropdown
-                a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
+                a.nav-btn.dropdown-toggle#nav-btn-toggle-search(href="#")
                     | Search
                 ul.dropdown-list.list
                     li.list-item
-                        a.nav-btn#nav-btn-item-all(href="/adverts/search")
+                        a.nav-btn#nav-btn-search-ads(href="/adverts/search")
                             | Search ads
                     if user
                         li.list-item
-                            a.nav-btn#nav-btn-item-all(href="/settings/search")
+                            a.nav-btn#nav-btn-search-users(href="/settings/search")
                                 | Search users
 
     block scripts
