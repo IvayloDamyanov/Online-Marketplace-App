@@ -49,6 +49,13 @@ gulp.task('tests:unit', ['pre-test'], () => {
         .pipe(istanbul.writeReports());
 });
 
+gulp.task('tests:browser', ['server-start'], () => {
+    return gulp.src('./test/browser/**/*.js')
+        .pipe(mocha({
+            reporter: 'nyan',
+        }));
+});
+
 const { MongoClient } = require('mongodb');
 
 gulp.task('stop:server', () => {
