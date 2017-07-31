@@ -36,14 +36,19 @@ class UserData extends BaseData {
         return this.findByUsername(username)
            .then((user) => {
                if (!user) {
-                   throw new Error('Invalid user !');
+                   const message = `Invalid user! 
+            Please go back to the homepage and try again.`;
+                   return Promise
+                   .reject(message);
                }
 
                const hashPass = encrypt.
                 generateHashedPassword(user.salt, password);
 
                if (user.password !== hashPass) {
-                   throw new Error('Invalid password !');
+                   const message = `Invalid password! 
+            Please go back to the homepage and try again.`;
+                   return Promise.reject(message);
                }
 
                return true;
@@ -54,7 +59,15 @@ class UserData extends BaseData {
         return this.findByUsername(target.username)
               .then((user) => {
                   if (!user) {
-                      throw new Error('Invalid user !');
+                      return Promise.reject('Invalid user!');
+                  }
+
+                  if (user.password !== target.oldPassword) {
+                      return Promise.reject('Invalid password!');
+                  }
+
+                  if (target.password !== target.ConfPassword) {
+                      return Promise.reject('Invalid password provided!');
                   }
 
                   const hashPass = encrypt.
@@ -70,6 +83,10 @@ class UserData extends BaseData {
     updateProfile(target) {
         this.findByUsername(target.username)
             .then((user) => {
+                if (!user) {
+                      return Promise.reject('Invalid user!');
+                }
+
                 return this.collection.updateOne(
                     { username: user.username },
                     { $set: {

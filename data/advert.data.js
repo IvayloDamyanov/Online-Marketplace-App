@@ -13,7 +13,10 @@ class AdvertData extends BaseData {
             .then((user) => {
                 console.log(user);
                 if (!user) {
-                    throw new Error('Invalid user !');
+                    const message = `Invalid user! 
+            Please go back to the homepage and try again.`;
+                   return Promise
+                   .reject(message);
                 }
 
                 return userData.collection.updateOne({
@@ -28,7 +31,10 @@ class AdvertData extends BaseData {
         return userData.findByUsername(target.username)
             .then((user) => {
                 if (!user) {
-                    throw new Error('Invalid user !');
+                    const message = `Invalid user! 
+            Please go back to the homepage and try again.`;
+                   return Promise
+                   .reject(message);
                 }
 
                 return userData.collection.updateOne({
