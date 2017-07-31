@@ -23,7 +23,7 @@ const applyTo = (app, data) => {
            });
     }));
 
-     app.use(session({
+    app.use(session({
         store: new MongoStore({ url: config.connectionString }),
         secret: config.sessionSecret,
         resave: true,

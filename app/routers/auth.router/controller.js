@@ -16,6 +16,7 @@ class UsersController {
 
     signOut(req, res) {
         req.logout();
+        req.toastr.success('Successfully logged out!');
         return res.redirect('/');
     }
 
@@ -25,7 +26,8 @@ class UsersController {
         this.data.users.findByUsername(bodyUser.username)
             .then((dbUser) => {
                 if (dbUser) {
-                    throw new Error('User already exists !');
+                    req.toastr.error('User already exists !');
+                    return res.redirect('/');
                 }
 
                 bodyUser.isDeleted = bodyUser.isDeleted || false;
@@ -45,6 +47,7 @@ class UsersController {
             .catch((err) => {
                 req.toastr.error('Failed to register!');
                 req.flash('error', err);
+                return res.redirect('/');
             });
     }
 }
