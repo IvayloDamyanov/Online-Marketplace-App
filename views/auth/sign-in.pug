@@ -2,7 +2,7 @@ extends ../_shared/_master
 block body
     != messages()
     form(action='/auth/sign-in', method="POST")
-        input.form-control(type="text" name="username" required="required" placeholder="Enter username")
-        input.form-control(type="password" name="password" required="required" placeholder="Enter password")
-        button.btn.btn-success
+        input.form-control#form-user(type="text" name="username" required="required" placeholder="Enter username")
+        input.form-control#form-password(type="password" name="password" required="required" placeholder="Enter password")
+        button.btn.btn-success#btn-sign-in
             | Sign In

@@ -1,15 +1,22 @@
 const gulp = require('gulp');
 const istanbul = require('gulp-istanbul');
 const mocha = require('gulp-mocha');
+const { MongoClient } = require('mongodb');
+const config = {
+    connectionString: 'mongodb://localhost/advertisment-test-db',
+    port: 3001,
+};
 
 gulp.task('server:start', () => {
     return require('./server');
 });
 
-const config = {
-    connectionString: 'mongodb://localhost/advertisment-db',
-    port: 3001,
-};
+gulp.task('db:start', () => {
+    return MongoClient.connect(config.connectionString)
+        .then((db) => {
+            return db.dropDatabase();
+        });
+});
 
 gulp.task('start:server', () => {
     return Promise.resolve()
@@ -49,18 +56,12 @@ gulp.task('tests:unit', ['pre-test'], () => {
         .pipe(istanbul.writeReports());
 });
 
-gulp.task('tests:browser', ['server-start'], () => {
-    return gulp.src('./test/browser/**/*.js')
+gulp.task('tests:browser', ['db:start', 'server:start'], () => {
+    return gulp.src(['./test/browser/public.tests.js',
+                    './test/browser/private.tests.js'])
         .pipe(mocha({
-            reporter: 'nyan',
-        }));
+            reporter: 'nyan', timeout: 15000,
+        }))
+        .pipe(istanbul.writeReports());
 });
 
-const { MongoClient } = require('mongodb');
-
-gulp.task('stop:server', () => {
-    return MongoClient.connect(config.connectionString)
-        .then((db) => {
-            return db.dropDatabase();
-        });
-});

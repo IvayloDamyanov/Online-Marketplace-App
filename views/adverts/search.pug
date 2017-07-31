@@ -2,7 +2,7 @@ extends ../_shared/_master
 block body
     .container
         h3.col-xs-6
-            form(action = "/adverts/ads" method = "get")
+            form#form-search-ads(action = "/adverts/ads" method = "get")
                 | Search Ads
                 div.h4
                     div= 'Num: '
