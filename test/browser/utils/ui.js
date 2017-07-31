@@ -10,15 +10,19 @@ const waitSeconds = (seconds) => {
     });
 };
 
-const waitFor = (selector) => {
+const waitFor = (drive, selector) => {
+    driver = drive;
     try {
+        console.log('trying');
         return driver.findElement(
             webdriver.By.css(selector)
         )
             .catch((err) => {
+                console.log('failing');
                 return waitFor(selector);
             });
     } catch (err) {
+        console.log('total fail');
         return waitSeconds(1)
             .then(() => waitFor(selector));
     }

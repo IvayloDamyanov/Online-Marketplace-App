@@ -47,12 +47,13 @@ mixin nav()
                     li.list-item
                         a.nav-btn#nav-btn-item-all(href="/adverts/ads")
                             | Ads
-                    li.list-item
-                        a.nav-btn#nav-btn-item-all(href="/adverts/create")
-                            | Create ads
-                    li.list-item
-                        a.nav-btn#nav-btn-item-all(href="/adverts/favs")
-                            | Favourite ads
+                    if user
+                        li.list-item
+                            a.nav-btn#nav-btn-item-all(href="/adverts/create")
+                                | Create ads
+                        li.list-item
+                            a.nav-btn#nav-btn-item-all(href="/adverts/favs")
+                                | Favourite ads
             li.list-item.dropdown
                 a.nav-btn.dropdown-toggle#nav-btn-toggle-items(href="#")
                     | Search
