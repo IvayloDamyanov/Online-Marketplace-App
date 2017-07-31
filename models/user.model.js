@@ -3,8 +3,8 @@ class User {
         if (typeof model !== 'undefined' &&
            typeof model.username === 'string' &&
            typeof model.password === 'string' &&
-           model.username.match(/^\w{3,20}$/g) &&
-           model.password.match(/^\w{4,20}$/g)) {
+           model.username.length > 3 &&
+           model.password.length > 5) {
                return true;
         }
         return false;
