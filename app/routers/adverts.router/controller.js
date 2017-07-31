@@ -81,6 +81,7 @@ class AdvertsController {
                 this.data.adverts.create(model);
                 status.num = model.num;
                 status.msg = 'created';
+                req.toastr.success('Created new ad');
             }
             return res.render('adverts/status', { model: status });
         });

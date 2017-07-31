@@ -62,7 +62,12 @@ class UserData extends BaseData {
                       return Promise.reject('Invalid user!');
                   }
 
-                  if (user.password !== target.oldPassword) {
+                  const oldPass = encrypt.
+                  generateHashedPassword(user.salt, target.oldPassword);
+
+                  if (user.password !== oldPass) {
+                      console.log(oldPass);
+                      console.log(target.oldPassword);
                       return Promise.reject('Invalid password!');
                   }
 
@@ -86,6 +91,11 @@ class UserData extends BaseData {
                 if (!user) {
                       return Promise.reject('Invalid user!');
                 }
+
+                target.nickname = target.nickname || user.nickname;
+                target.age = target.age || user.age;
+                target.gender = target.gender || user.gender;
+                target.interests = target.interests || user.interests;
 
                 return this.collection.updateOne(
                     { username: user.username },
