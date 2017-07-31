@@ -1,19 +1,22 @@
 extends ../_shared/_master
 block body
     form(action='/auth/sign-up', method="POST")
-        input.form-control(type="text" name="username" placeholder="Enter username")
-        input.form-control(type="password" name="password" placeholder="Enter password")
-        input.form-control(type="text" name="nickname" placeholder="Enter nickname")
-        input.form-control(type="text" name="age" placeholder="Enter age")
-        label.radio-inline
-            | Male
-            input.radio-inline(type="radio" name="gender" value="male")
-        label.radio-inline
-            | Female
-            input.radio-inline(type="radio" name="gender" value="female")
-        label.radio-inline
-            | Other
-            input.radio-inline(type="radio" name="gender" value="other")
-        input.form-control(type="text" name="interests" placeholder="Enter interests")
+        input.form-control(type="text" name="username" required="required" placeholder="Enter username")
+        input.form-control(type="password" name="password" required="required" placeholder="Enter password")
+        input.form-control(type="text" name="nickname" required="required" placeholder="Enter nickname")
+        input.form-control(type="text" name="age" required="required" placeholder="Enter age")
+        div.radio
+            label
+               input(type="radio" name="gender" value="")
+               | Male
+        div.radio
+            label
+               input(type="radio" name="gender" value="")
+               |  Female
+        div.radio
+            label
+               input(type="radio" name="gender" value="")
+               | Other
+        input.form-control(type="text" name="interests" required="required" placeholder="Enter interests")
         button.btn.btn-success
            | Sign Up
