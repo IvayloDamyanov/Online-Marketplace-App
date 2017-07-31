@@ -1,10 +1,10 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 
-const UserData = require('../../../data/users.data');
-const User = require('../../../models/user.model');
+const AdvertData = require('../../../data/advert.data');
+const Advert = require('../../../models/advert.model');
 
-describe('UserData.filterBuilder', () => {
+describe('AdvertData.filterBuilder', () => {
     const db = {
         collection: () => {},
     };
@@ -13,14 +13,15 @@ describe('UserData.filterBuilder', () => {
     describe('when there are items in db', () => {
         beforeEach(() => {
                 // Arrange
-                data = new UserData(db, User, User);
+                data = new AdvertData(db, Advert, Advert);
         });
 
         it('expect to build the filter successfully', () => {
             const props = {
-                username: 'Pesho',
-                nickname: 'Pepcho',
-                isDeleted: false,
+                num: '1',
+                name: 'Football ball',
+                town: 'Sofia',
+                category: 'Sport',
             };
 
             const result = data.filterBuilder(props);

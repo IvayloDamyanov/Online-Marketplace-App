@@ -11,6 +11,7 @@ class AdvertData extends BaseData {
         const userData = new UserData(this.db);
         return userData.findByUsername(target.username)
             .then((user) => {
+                console.log(user);
                 if (!user) {
                     throw new Error('Invalid user !');
                 }

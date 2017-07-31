@@ -75,10 +75,10 @@ describe('/settings tests', () => {
     });
 
     describe('POST /users/:id', () => {
-        it('expect to return 302', (done) => {
+        it('expect to return 200', (done) => {
             request(app)
                 .post('/settings/users/:id')
-                .expect(302)
+                .expect(200)
                 .end((err, res) => {
                     if (err) {
                         return done(err);
